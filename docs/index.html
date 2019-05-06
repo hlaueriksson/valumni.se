@@ -25,6 +25,9 @@
         font-size: 2rem;
         text-align: center;
       }
+      #stats {
+        font-size: 1rem;
+      }
     </style>
   </head>
   <body>
@@ -32,5 +35,17 @@
     <h2>Value through Alumni</h2>
     <p>Har du jobbat på Myntet?</p>
     <p><a href="https://join.slack.com/t/valumni/shared_invite/enQtNTA3MDI4NTkxODczLWE1NTRkMmY4OTdmZmI0ODM4MzRiYWUyZDZmNGY4MWIzMDkzOGQ1MDgyODNiNWVhOTYyM2I4OWViMmIyNjhiMjQ">valumni.slack.com</a></p>
+    <div id="stats" style="display:none">
+      <p>Just nu har <strong id="member-count"></strong> gamla kollegor joinat vår Slack. Vill du veta vilka? Klicka på länken ovan!</p>
+    </div>
   </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+  <script>
+    $(function() {
+      $.get("https://valumni.azurewebsites.net/api/SlackStats", function(data) {
+        $("#member-count").html(data);
+        $("#stats").toggle();
+      });
+    });
+  </script>
 </html>
